@@ -8,7 +8,7 @@ Pet Vet | Sucursales
 {% block content %}
 
 {% if messages %}
-<div class="container my-3 text-center">
+<div class="container my-3 text-center ">
     {% for message in messages %}
         <div class="alert border rounded-pill py-2 px-4 mx-auto {{ message.tags }}" style="max-width: 600px;">
             {{ message }}
@@ -19,8 +19,8 @@ Pet Vet | Sucursales
 
 <div class ="container">
 
-  <h2 class="text-center mt-2">Buscar sucursal</h2>
-  <!-- Formulario de búsqueda -->
+  <h2 class="text-center mt-2" id="sucursal">Buscar sucursal</h2>
+
   <div class="d-flex flex-column align-items-center mb-2">
       <form action="" method="GET">
           <input type="text" name="q" placeholder="Buscar..." required>
@@ -39,7 +39,7 @@ Pet Vet | Sucursales
             <th scope="col">Nombre</th>
             <th scope="col">Direccion</th>
             <th scope="col">Telefono</th>
-            {% if user.is_authenticated %}
+            {% if user.is_superuser %}
             <th scope="col">Acciones</th>
             {% endif %}
           </tr>
@@ -50,15 +50,10 @@ Pet Vet | Sucursales
             <td>{{ sucursales.nombre }}</td>
             <td>{{ sucursales.direccion }}</td>
             <td>{{ sucursales.telefono }}</td>
-            {% if user.is_authenticated %}
+            {% if user.is_superuser %}
             <td>
-
-              {% if user.is_superuser %}
               <a class="btn btn-danger" href = "{% url 'delete-sucursal' sucursales.id %}">Eliminar</a>
               <a class="btn btn-warning" href = "{% url 'editar-sucursal' sucursales.id %}">Editar</a>
-              {% else %}
-              <p> No tiene permiso de ediciones </p>
-              {% endif %}
               {% endif %}
             </td>
           </tr>

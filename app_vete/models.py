@@ -28,6 +28,7 @@ class Cliente(models.Model):
         return f"{self.nombre} - {self.telefono} - {self.email}"
     
 class Mascota(models.Model):
+    nombre = models.CharField(max_length=100, null=True)
     especie = models.CharField(max_length=50, choices=[
         ('perro', 'Perro'),
         ('gato', 'Gato'),
@@ -39,7 +40,7 @@ class Mascota(models.Model):
     edad = models.PositiveIntegerField()
 
     def __str__(self):
-        return f"{self.especie} - {self.raza} - {self.edad}"
+        return f"{self.especie} - {self.nombre} - {self.edad}"
     
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

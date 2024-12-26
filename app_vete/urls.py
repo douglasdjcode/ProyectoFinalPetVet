@@ -24,6 +24,7 @@ urlpatterns = [
     path('cliente/', views.cliente, name = "cliente"),
     path('mascota/', views.mascota, name = "mascota"),
     path('acerca/', views.acerca, name = "acerca"),
+    path('pagina-remodelacion/', views.pagina_remodelacion, name = "pagina-remodelacion"),
 
 
     #Formularios

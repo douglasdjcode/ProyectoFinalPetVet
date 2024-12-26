@@ -9,7 +9,7 @@ Pet Vet | Productos
 
 
 {% if messages %}
-<div class="container my-3 text-center">
+<div class="container my-3 text-center" >
     {% for message in messages %}
         <div class="alert border rounded-pill py-2 px-4 mx-auto {{ message.tags }}" style="max-width: 600px;">
             {{ message }}
@@ -21,7 +21,7 @@ Pet Vet | Productos
 
 <div class ="container">
 
-  <h2 class="text-center mt-2">Buscar Producto</h2>
+  <h2 class="text-center mt-2" id="producto">Buscar Producto</h2>
   <!-- Formulario de búsqueda -->
   <div class="d-flex flex-column align-items-center mb-2">
       <form action="" method="GET">
@@ -54,9 +54,10 @@ Pet Vet | Productos
                 {% if user.is_superuser %}
                 <a class="btn btn-danger me-3" href = "{% url 'delete-producto' productos.id %}">Eliminar</a>
                 <a class="btn btn-warning me-3" href = "{% url 'editar-producto' productos.id %}">Editar</a>
+                {% endif %}
+                {% if user.is_authenticated %}
                 <a class="btn btn-info" href = "{% url 'descripcion-producto' productos.id %}">Descripcion</a>
-                {% else %}
-                <p> No tiene permiso de ediciones </p>
+                <a class="btn btn-success" href = "{% url 'pagina-remodelacion' %}#mensaje">Comprar</a>
                 {% endif %}
 
                 </td>

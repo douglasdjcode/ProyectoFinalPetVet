@@ -1,0 +1,24 @@
+{% extends "app_vete/base.html" %}
+{% load static %}
+
+{% block title %} 
+Pet Vet | Productos 
+{% endblock %} 
+
+{% block content %}
+
+<div id="mensaje" class="container-fluid d-flex justify-content-center align-items-center vh-100 bg-light">
+    <div class="text-center p-5" style="border: 3px dashed #ffc107; background-color: #fff; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); border-radius: 15px;">
+        <div class="mb-4">
+            <span class="icon display-1 text-warning">🚧</span>
+        </div>
+        <h1 class="text-danger fw-bold">¡Página en Construcción!</h1>
+        <p class="text-dark fs-4">
+            Estamos trabajando para traerte algo increíble. <br> 
+            ¡Gracias por tu paciencia, vuelve pronto!
+        </p>
+        <a href="{% url 'inicio' %}" class="btn btn-warning btn-lg mt-4 px-5">Ir a Inicio</a>
+    </div>
+</div>
+
+{% endblock %}

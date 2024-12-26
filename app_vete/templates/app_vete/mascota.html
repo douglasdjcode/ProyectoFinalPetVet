@@ -19,8 +19,8 @@ Pet Vet | Mascotas
 
     <div class ="container">
 
-      <h2 class="text-center mt-2">Buscar mascota</h2>
-      <!-- Formulario de búsqueda -->
+      <h2 class="text-center mt-2" id="mascota">Buscar mascota</h2>
+
       <div class="d-flex flex-column align-items-center mb-2">
           <form action="" method="GET">
               <input type="text" name="q" placeholder="Buscar..." required>
@@ -35,6 +35,7 @@ Pet Vet | Mascotas
             <thead>
               <tr table class="table-primary"> 
         
+                <th scope="col">Nombre</th>
                 <th scope="col">Especie</th>
                 <th scope="col">Raza</th>
                 <th scope="col">Edad</th>
@@ -44,6 +45,7 @@ Pet Vet | Mascotas
             <tbody>
                 {% for mascotas in mascota %}
               <tr table class="table-success">
+                <td>{{ mascotas.nombre }}</td>
                 <td>{{ mascotas.especie }}</td>
                 <td>{{ mascotas.raza }}</td>
                 <td>{{ mascotas.edad }}</td>

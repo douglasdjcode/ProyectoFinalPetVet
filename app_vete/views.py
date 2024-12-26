@@ -160,7 +160,7 @@ def mascota(request):
     query = request.GET.get('q')
 
     if query:
-        mascota = Mascota.objects.filter(Q(especie__icontains=query) | Q(edad__icontains=query) | Q(raza__icontains=query))
+        mascota = Mascota.objects.filter(Q(especie__icontains=query) | Q(edad__icontains=query) | Q(raza__icontains=query)) | Q(nombre__icontains=query)
         
     else:
 
@@ -175,7 +175,7 @@ def formulario_mascota(request):
         mascota_form = MascotasFormulario(request.POST)
         if mascota_form.is_valid():
             info_limpia = mascota_form.cleaned_data
-            mascota = Mascota(especie = info_limpia["especie"], raza = info_limpia["raza"], edad = info_limpia["edad"]) 
+            mascota = Mascota(nombre = info_limpia["nombre"], especie = info_limpia["especie"], raza = info_limpia["raza"], edad = info_limpia["edad"]) 
             mascota.save()
             return redirect("registro-exitoso")
         
@@ -297,6 +297,7 @@ def editar_mascota(request, id):
         mascota_form = MascotasFormulario(request.POST)
         if mascota_form.is_valid():
             info_limpia = mascota_form.cleaned_data
+            mascota.nombre = info_limpia["nombre"]
             mascota.especie = info_limpia["especie"]
             mascota.raza = info_limpia["raza"]
             mascota.edad = info_limpia["edad"]
@@ -306,7 +307,7 @@ def editar_mascota(request, id):
 
     else:
         mascota = Mascota.objects.get(id=id)
-        mascota_form = MascotasFormulario(initial={"especie": mascota.especie, "raza": mascota.raza , "edad": mascota.edad})
+        mascota_form = MascotasFormulario(initial={"nombre": mascota.nombre, "especie": mascota.especie, "raza": mascota.raza , "edad": mascota.edad})
 
     return render(request, "app_vete/forms/editar-mascota.html", {"mascota_form": mascota_form})
 
@@ -362,3 +363,5 @@ def descripcion_producto(request, id):
 
     return render(request, 'app_vete/forms/descripcion-producto.html', {'producto': producto})
 
+def pagina_remodelacion(request):
+    return render(request,"app_vete/pagina-remodelacion.html")

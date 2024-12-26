@@ -3,6 +3,13 @@ from django.contrib.auth.models import User
 from .models import Perfil
 
 class MascotasFormulario(forms.Form):
+    nombre = forms.CharField(
+    label = '',
+    widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Nombre',
+    })
+    )
     especie = forms.ChoiceField(choices=[
         ('perro', 'Perro'),
         ('gato', 'Gato'),
