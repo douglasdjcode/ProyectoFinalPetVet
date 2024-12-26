@@ -232,11 +232,11 @@ def formulario_sucursal(request):
     contexto = {"sucursal_form": sucursal_form}
     return render(request, "app_vete/forms/sucursal-formulario.html", contexto)
 
-@user_passes_test(lambda u: u.is_superuser)
+
 def registro_exitoso(request):
     return render(request,"app_vete/forms/registro-exitoso.html")
 
-@user_passes_test(lambda u: u.is_superuser)
+
 def registro_exitoso_usuario(request):
     return render(request,"app_vete/forms/registro-exitoso-usuario.html")
 
