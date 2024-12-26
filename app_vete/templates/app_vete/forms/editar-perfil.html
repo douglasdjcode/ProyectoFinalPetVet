@@ -1,0 +1,35 @@
+{% extends "app_vete/base.html" %}
+{% load static %}
+
+{% block title %} 
+Pet Vet | Editando perfil de 
+{% endblock %} 
+
+{% block content %}
+
+
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-4">
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {{ user_form.as_p }}
+                {{ perfil_form.as_p }}
+
+
+
+                <div class="d-flex justify-content-between mt-3">
+                    <a class="btn btn-warning me-2" href="{% url 'mostrar-perfil' %}">Volver</a>
+                    <button class="btn btn-primary" type="submit">Editar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

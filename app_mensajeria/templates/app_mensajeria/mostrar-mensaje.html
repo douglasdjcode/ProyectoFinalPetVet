@@ -1,0 +1,47 @@
+{% extends "app_vete/base.html" %}
+{% load static %}
+
+{% block title %} 
+Pet Vet | Mis Mensajes
+{% endblock %} 
+
+
+{% block content %}
+
+{% if messages %}
+<div class="container my-3 text-center">
+    {% for message in messages %}
+        <div class="alert border rounded-pill py-2 px-4 mx-auto {{ message.tags }}" style="max-width: 600px;">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header text-center bg-primary text-white">
+                    <h1>Mis Mensajes</h1>
+                </div>
+                <div class="card-body">
+                    {% if mensajes %}
+                        <div class="list-group">
+                            {% for mensaje in mensajes %}
+                                <div class="list-group-item mb-3 border border-success-subtle rounded">
+                                    <p><strong>De:</strong> {{ mensaje.remitente }}</p>
+                                    <p><strong>Mensaje:</strong> {{ mensaje.contenido }}</p>
+                                    <p class="text-muted"><strong>Enviado el:</strong> {{ mensaje.fecha_envio }}</p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p class="text-center">No tienes mensajes aún.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

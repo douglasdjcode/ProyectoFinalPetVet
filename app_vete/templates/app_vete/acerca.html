@@ -1,0 +1,74 @@
+{% extends "app_vete/base.html" %}
+{% load static %}
+
+{% block title %} 
+Pet Vet | Clientes 
+{% endblock %} 
+
+{% block content %}
+
+<!-- About-->
+<section class="page-section" id="about">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Sobre nosotros</h2>
+            <h3 class="section-subheading text-muted">Esta fue nuestra trayectoria a lo largo del camino</h3>
+        </div>
+        <ul class="timeline">
+            <li>
+                <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'app_vete/assets/img/about/1.jpg' %}" alt="..." /></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4>2009-2011</h4>
+                        <h4 class="subheading">OEl Comienzo de un Sueño</h4>
+                    </div>
+                    <div class="timeline-body"><p class="text-muted">En 2009, un grupo de apasionados veterinarios y cuidadores de animales unieron sus fuerzas con el sueño de ofrecer atención de calidad para las mascotas y animales de la comunidad. Fue entonces cuando se inauguró nuestra veterinaria, con la misión de ser un lugar de confianza para el bienestar animal.</p></div>
+                </div>
+            </li>
+            <li class="timeline-inverted">
+                <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'app_vete/assets/img/about/2.jpg' %}" alt="..." /></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4>Marzo 2011</h4>
+                        <h4 class="subheading">Expansión de Servicios</h4>
+                    </div>
+                    <div class="timeline-body"><p class="text-muted">A solo dos años de nuestra apertura, el éxito de nuestra clínica nos permitió expandir nuestros servicios. Comenzamos a ofrecer una gama más amplia de tratamientos, desde consultas generales hasta emergencias, asegurando que los animales recibieran la mejor atención en cualquier situación.</p></div>
+                </div>
+            </li>
+            <li>
+                <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'app_vete/assets/img/about/3.jpg' %}" alt="..." /></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4>Diciembre 2015</h4>
+                        <h4 class="subheading"> Introducción Productos Especializados</h4>
+                    </div>
+                    <div class="timeline-body"><p class="text-muted">A medida que crecía la demanda de productos de calidad para mascotas, decidimos lanzar nuestra línea de productos especializados. Alimentos, suplementos y accesorios diseñados para mejorar la vida de los animales y fortalecer su salud, todo disponible bajo un mismo techo.</p></div>
+                </div>
+            </li>
+            <li class="timeline-inverted">
+                <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'app_vete/assets/img/about/4.jpg' %}" alt="..." /></div>
+                <div class="timeline-panel">
+                    <div class="timeline-heading">
+                        <h4>Julio 2024</h4>
+                        <h4 class="subheading">Mirando al Futuro</h4>
+                    </div>
+                    <div class="timeline-body"><p class="text-muted">Hoy, seguimos creciendo, con planes para abrir nuevas sucursales y seguir innovando en la atención veterinaria. Nuestro equipo de profesionales sigue comprometido con el cuidado de tus mascotas, brindando el mejor servicio y garantizando que todos los animales que atendemos tengan una vida saludable y feliz.</p></div>
+                </div>
+            </li>
+            <li class="timeline-inverted">
+                <div class="timeline-image">
+                    <h4>
+                        Se Parte
+                        <br />
+                        de nuestra
+                        <br />
+                        Historia!
+                    </h4>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+
+{% endblock %}

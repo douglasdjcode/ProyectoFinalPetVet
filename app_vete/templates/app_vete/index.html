@@ -1,0 +1,61 @@
+{% extends "app_vete/base.html" %}
+{% load static %}
+
+{% block title %} 
+Pet Vet | Inicio 
+{% endblock %} 
+
+{% block content %}
+
+
+
+
+{% if messages %}
+<div class="container my-3 text-center">
+    {% for message in messages %}
+        <div class="alert border rounded-pill py-2 px-4 mx-auto {{ message.tags }}" style="max-width: 600px;">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+    
+
+
+<section class="page-section" id="services">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">Servicios</h2>
+
+        </div>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="my-3">Nuestra Tienda Online</h4>
+                <p class="text-muted">Explora una amplia variedad de productos de calidad para ti y tu mascota, todo al alcance de un clic. En nuestra tienda online, ofrecemos una experiencia de compra fácil, rápida y segura, con opciones de pago flexibles y entregas a domicilio.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="my-3">Experiencia Óptima en Todos los Dispositivos</h4>
+                <p class="text-muted">Nuestro sitio web ha sido cuidadosamente diseñado para brindarte una experiencia de usuario excepcional, ya estés navegando desde un teléfono móvil, tablet o computadora de escritorio. Gracias a nuestra tecnología de diseño responsivo, el contenido y las imágenes se ajustan automáticamente al tamaño de la pantalla, ofreciendo una navegación fácil y fluida en cualquier dispositivo.</p>
+            </div>
+            <div class="col-md-4">
+                <span class="fa-stack fa-4x">
+                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                    <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+                </span>
+                <h4 class="my-3">Seguridad Web</h4>
+                <p class="text-muted">En nuestra tienda en línea, la seguridad de tus datos es nuestra prioridad. Implementamos las mejores prácticas y tecnologías para asegurar que toda la información que compartes con nosotros esté protegida de manera efectiva.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock  %}
+

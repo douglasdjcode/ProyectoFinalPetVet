@@ -1,0 +1,78 @@
+{% extends "app_vete/base.html" %}
+{% load static %}
+
+{% block title %} 
+Pet Vet | Mascotas 
+{% endblock %} 
+
+{% block content %}
+
+{% if messages %}
+<div class="container my-3 text-center">
+    {% for message in messages %}
+        <div class="alert border rounded-pill py-2 px-4 mx-auto {{ message.tags }}" style="max-width: 600px;">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+    <div class ="container">
+
+      <h2 class="text-center mt-2">Buscar mascota</h2>
+      <!-- Formulario de búsqueda -->
+      <div class="d-flex flex-column align-items-center mb-2">
+          <form action="" method="GET">
+              <input type="text" name="q" placeholder="Buscar..." required>
+              <button type="submit">Buscar</button>
+          </form>
+      </div>
+
+      
+
+
+        <table class="table">
+            <thead>
+              <tr table class="table-primary"> 
+        
+                <th scope="col">Especie</th>
+                <th scope="col">Raza</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for mascotas in mascota %}
+              <tr table class="table-success">
+                <td>{{ mascotas.especie }}</td>
+                <td>{{ mascotas.raza }}</td>
+                <td>{{ mascotas.edad }}</td>
+                <td>
+
+                  {% if user.is_superuser %}
+                  <a class="btn btn-danger" href = "{% url 'delete-mascota' mascotas.id %}">Eliminar</a>
+                  <a class="btn btn-warning" href = "{% url 'editar-mascota' mascotas.id %}">Editar</a>
+                  {% else %}
+                  <p> No tiene permiso de ediciones </p>
+                  {% endif %}
+
+
+                </td>
+              </tr>
+              <tr>
+                {% endfor %}
+            </tbody>
+          </table>
+
+    
+    </div>
+
+    {% if user.is_superuser %}
+    <div class="text-center">
+      <a href="{% url 'mascota-form' %}" class="btn btn-primary">Crear Mascota</a>
+    </div>
+    {% endif %}
+
+
+
+{% endblock %}

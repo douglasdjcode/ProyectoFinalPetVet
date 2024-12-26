@@ -1,0 +1,57 @@
+{% extends "app_vete/base.html" %}
+{% load static %}
+
+{% block title %} 
+Pet Vet | Inicio de Sesión
+{% endblock %} 
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header text-center bg-primary text-white">
+                    <h3>Inicio de Sesión</h3>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        
+                        <div class="mb-3">
+                        
+                            <input 
+                                type="text" 
+                                name="username" 
+                                id="username" 
+                                class="form-control"
+                                placeholder="Ingrese el nombre de usuario" 
+                                required
+                            >
+                        </div>
+
+                        
+                        <div class="mb-3">
+                        
+                            <input 
+                                type="password" 
+                                name="password" 
+                                id="password" 
+                                class="form-control"
+                                placeholder="Ingrese la contraseña" 
+                                required
+                            >
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success me-2">Ingresar</button>
+                            <a class="btn btn-warning" href="{% url 'inicio' %}">Volver</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
