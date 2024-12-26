@@ -48,4 +48,5 @@ urlpatterns = [
 
     #Descripcion
     path('descripcion-producto/<int:id>', views.descripcion_producto, name = "descripcion-producto"),
+    path('historial-mascota/<int:id>', views.historial_mascota, name = "historial-mascota"),
 ]

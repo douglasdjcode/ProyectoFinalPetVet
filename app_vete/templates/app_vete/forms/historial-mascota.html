@@ -1,0 +1,36 @@
+{% extends "app_vete/base.html" %}
+{% load static %}
+
+{% block title %} 
+Pet Vet | Historial de la mascota
+{% endblock %} 
+
+{% block content %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-light">
+                <div class="card-header text-center bg-primary text-white">
+                    <h2>Historial de la mascota</h2>
+                </div>
+                <div class="card-body">
+                    <h3 class="text-center mb-4">{{ mascota.nombre }}</h3>
+                    
+
+                    <p class="text-muted mb-4">{{ mascota.historial }}</p>
+                    
+                    <div class="text-center">
+                        <a href="{% url 'mascota' %}" class="btn btn-secondary me-2">Volver a Mascotas</a>
+                        {% if user.is_superuser %}
+                        <a href="{% url 'editar-mascota' mascota.id %}" class="btn btn-warning">Editar Mascota</a>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

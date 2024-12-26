@@ -31,6 +31,16 @@ class MascotasFormulario(forms.Form):
             'placeholder': 'Edad',
         })
     )
+    historial = forms.CharField(
+        label='',
+        widget=forms.Textarea(attrs={
+            'class': 'form-control',
+            'rows': 3,
+            'placeholder': 'Historial de la mascota (opcional)',
+        }),
+        max_length=500,
+        required=False,
+    )
 
 class ClienteFormulario(forms.Form):
     nombre = forms.CharField(

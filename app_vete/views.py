@@ -75,7 +75,7 @@ def editar_perfil(request):
             messages.success(request, "Perfil actualizado con éxito.")
             return redirect("mostrar-perfil")
         else:
-            messages.success(request, "No se pudieron actualizar tus datos.")
+            messages.error(request, "No se pudieron actualizar tus datos.")
             return redirect("inicio")
 
     else:
@@ -125,7 +125,7 @@ def sucursal(request):
 
     return render(request,"app_vete/sucursal.html", {"sucursales": sucursales})
 
-
+@login_required
 def producto(request):
 
     query = request.GET.get('q')
@@ -139,7 +139,7 @@ def producto(request):
 
     return render(request,"app_vete/producto.html", {"producto": producto})
     
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def cliente(request):
 
     query = request.GET.get('q')
@@ -154,7 +154,7 @@ def cliente(request):
     print(cliente)
     return render(request,"app_vete/cliente.html", {"cliente": cliente})
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def mascota(request):
 
     query = request.GET.get('q')
@@ -168,16 +168,17 @@ def mascota(request):
 
     return render(request,"app_vete/mascota.html", {"mascota": mascota})
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def formulario_mascota(request):
 
     if request.method == "POST":
         mascota_form = MascotasFormulario(request.POST)
         if mascota_form.is_valid():
             info_limpia = mascota_form.cleaned_data
-            mascota = Mascota(nombre = info_limpia["nombre"], especie = info_limpia["especie"], raza = info_limpia["raza"], edad = info_limpia["edad"]) 
+            mascota = Mascota(nombre = info_limpia["nombre"], especie = info_limpia["especie"], raza = info_limpia["raza"], edad = info_limpia["edad"], historial = info_limpia["historial"]) 
             mascota.save()
-            return redirect("registro-exitoso")
+            messages.success(request, "Mascota agregada con éxito.")
+            return redirect("mascota")
         
     else:
         mascota_form = MascotasFormulario()
@@ -185,7 +186,7 @@ def formulario_mascota(request):
     print(contexto)
     return render(request, "app_vete/forms/mascota-formulario.html", contexto)
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def formulario_cliente(request):
     if request.method == "POST":
         cliente_form = ClienteFormulario(request.POST)
@@ -193,28 +194,30 @@ def formulario_cliente(request):
             info_limpia = cliente_form.cleaned_data
             cliente = Cliente(nombre=info_limpia["nombre"], telefono=info_limpia["telefono"], email=info_limpia["email"])
             cliente.save()
-            return redirect("registro-exitoso")
+            messages.success(request, "Cliente agregado con éxito.")
+            return redirect("cliente")
 
     else:
         cliente_form = ClienteFormulario()
     contexto = {"cliente_form": cliente_form}
     return render(request, "app_vete/forms/cliente-formulario.html", contexto)
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def formulario_producto(request):
     if request.method == "POST":
         producto_form = ProductoFormulario(request.POST)
         if producto_form.is_valid():
             info_limpia = producto_form.cleaned_data
-            producto = Producto(nombre=info_limpia["nombre"], precio=info_limpia["precio"], categoria=info_limpia["categoria"])
+            producto = Producto(nombre=info_limpia["nombre"], precio=info_limpia["precio"], categoria=info_limpia["categoria"], descripcion=info_limpia["descripcion"])
             producto.save()
-            return redirect("registro-exitoso")
+            messages.success(request, "Producto agregado con éxito.")
+            return redirect("producto")
     else:
         producto_form = ProductoFormulario()
     contexto = {"producto_form": producto_form}
     return render(request, "app_vete/forms/producto-formulario.html", contexto)
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def formulario_sucursal(request):
     if request.method == "POST":
         sucursal_form = SucursalFormulario(request.POST)
@@ -222,19 +225,22 @@ def formulario_sucursal(request):
             info_limpia = sucursal_form.cleaned_data
             sucursal = Sucursal(nombre=info_limpia["nombre"], direccion=info_limpia["direccion"], telefono=info_limpia["telefono"])
             sucursal.save()
-            return redirect("registro-exitoso")
+            messages.success(request, "Sucursal agregada con éxito.")
+            return redirect("sucursal")
     else:
         sucursal_form = SucursalFormulario()
     contexto = {"sucursal_form": sucursal_form}
     return render(request, "app_vete/forms/sucursal-formulario.html", contexto)
 
+@user_passes_test(lambda u: u.is_superuser)
 def registro_exitoso(request):
     return render(request,"app_vete/forms/registro-exitoso.html")
 
+@user_passes_test(lambda u: u.is_superuser)
 def registro_exitoso_usuario(request):
     return render(request,"app_vete/forms/registro-exitoso-usuario.html")
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def eliminar_producto(request, id):
 
     producto = Producto.objects.get(id=id)
@@ -242,7 +248,7 @@ def eliminar_producto(request, id):
     messages.warning(request, "Producto eliminado.")
     return redirect("producto")
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def eliminar_mascota(request, id):
 
     mascota = Mascota.objects.get(id=id)
@@ -250,7 +256,7 @@ def eliminar_mascota(request, id):
     messages.warning(request, "Mascota eliminada.")
     return redirect("mascota")
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def eliminar_cliente(request, id):
 
     cliente = Cliente.objects.get(id=id)
@@ -258,7 +264,7 @@ def eliminar_cliente(request, id):
     messages.warning(request, "Cliente eliminado.")
     return redirect("cliente")
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def eliminar_sucursal(request, id):
 
     sucursal = Sucursal.objects.get(id=id)
@@ -266,7 +272,7 @@ def eliminar_sucursal(request, id):
     messages.warning(request, "Sucursal eliminada.")
     return redirect("sucursal")
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def editar_sucursal(request, id):
 
     sucursal = Sucursal.objects.get(id=id)
@@ -301,17 +307,18 @@ def editar_mascota(request, id):
             mascota.especie = info_limpia["especie"]
             mascota.raza = info_limpia["raza"]
             mascota.edad = info_limpia["edad"]
+            mascota.historial = info_limpia["historial"]
             mascota.save()
             messages.success(request, "Mascota editada con éxito.")
         return redirect("mascota")
 
     else:
         mascota = Mascota.objects.get(id=id)
-        mascota_form = MascotasFormulario(initial={"nombre": mascota.nombre, "especie": mascota.especie, "raza": mascota.raza , "edad": mascota.edad})
+        mascota_form = MascotasFormulario(initial={"nombre": mascota.nombre, "especie": mascota.especie, "raza": mascota.raza , "edad": mascota.edad, "historial": mascota.historial})
 
     return render(request, "app_vete/forms/editar-mascota.html", {"mascota_form": mascota_form})
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def editar_cliente(request, id):
 
     cliente = Cliente.objects.get(id=id)
@@ -333,7 +340,7 @@ def editar_cliente(request, id):
 
     return render(request, "app_vete/forms/editar-cliente.html", {"cliente_form": cliente_form})
 
-@login_required
+@user_passes_test(lambda u: u.is_superuser)
 def editar_producto(request, id):
 
     producto = Producto.objects.get(id=id)
@@ -356,12 +363,19 @@ def editar_producto(request, id):
 
     return render(request, "app_vete/forms/editar-producto.html", {"producto_form": producto_form})
 
-
+@login_required
 def descripcion_producto(request, id):
 
     producto = Producto.objects.get(id=id)
 
     return render(request, 'app_vete/forms/descripcion-producto.html', {'producto': producto})
+
+@user_passes_test(lambda u: u.is_superuser)
+def historial_mascota(request, id):
+
+    mascota = Mascota.objects.get(id=id)
+
+    return render(request, 'app_vete/forms/historial-mascota.html', {'mascota': mascota})
 
 def pagina_remodelacion(request):
     return render(request,"app_vete/pagina-remodelacion.html")

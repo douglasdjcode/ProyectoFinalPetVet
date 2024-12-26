@@ -15,7 +15,11 @@ def enviar_mensaje(request):
         messages.success(request, "Mensaje enviado.")
         return redirect("mostrar-mensaje")
 
-    usuarios = User.objects.exclude(username=request.user.username)
+    if request.user.is_superuser:
+        usuarios = User.objects.all()  
+    else:
+        usuarios = User.objects.filter(username__in=["Atencion_al_Cliente", "Atencion_Veterinaria"])
+    
     
     return render(request, "app_mensajeria/enviar-mensaje.html", {"usuarios": usuarios})
 

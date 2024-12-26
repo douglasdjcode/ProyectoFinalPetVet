@@ -33,11 +33,13 @@ Pet Vet | Mis Mensajes
                                     <p><strong>De:</strong> {{ mensaje.remitente }}</p>
                                     <p><strong>Mensaje:</strong> {{ mensaje.contenido }}</p>
                                     <p class="text-muted"><strong>Enviado el:</strong> {{ mensaje.fecha_envio }}</p>
+                                    <a class="btn btn-warning" href = "{% url 'pagina-remodelacion' %}#mensaje">Responder</a>
                                 </div>
                             {% endfor %}
                         </div>
                     {% else %}
                         <p class="text-center">No tienes mensajes aún.</p>
+                        <a class="btn btn-warning" href = "{% url 'pagina-remodelacion' %}#mensaje">volver</a>
                     {% endif %}
                 </div>
             </div>

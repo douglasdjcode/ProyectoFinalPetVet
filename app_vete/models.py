@@ -38,6 +38,7 @@ class Mascota(models.Model):
     ])
     raza = models.CharField(max_length=100)
     edad = models.PositiveIntegerField()
+    historial = models.TextField(null=True) 
 
     def __str__(self):
         return f"{self.especie} - {self.nombre} - {self.edad}"
